@@ -1,0 +1,95 @@
+cabal-version:      2.4
+category:           Languages
+build-type:         Simple
+name:               CoC
+synopsis:           A language with a core based on calculus of constructions
+version:            0.1.0
+
+
+executable repl
+
+
+  main-is:
+    Main.hs
+
+  ghc-options:
+    -threaded -rtsopts
+
+  hs-source-dirs:
+    app/
+
+  build-depends:
+      base
+    , Core
+    , ansi-terminal
+        ^>= 0.9.1
+    , haskeline
+        ^>= 0.7.5.0
+    , megaparsec
+        ^>= 7.0.5
+    , text
+        ^>=1.2.3
+    , transformers
+        ^>= 0.5.6.2
+
+
+
+Library Core
+
+  ghc-options:
+    -threaded
+    -rtsopts
+    -O2
+    -fobject-code
+    -Wall
+    -Wincomplete-patterns
+
+  hs-source-dirs:
+    src/
+
+  build-depends:
+      base
+    , containers
+        ^>= 0.6.2.1
+    , megaparsec
+        ^>= 7.0.5
+    , mtl
+        ^>= 2.2.2
+    , text
+        ^>=1.2.3
+    , megaparsec
+        ^>= 7.0.5
+    , text
+        ^>=1.2.3
+
+  exposed-modules:
+      CoC.Expression
+--      CoC.PrettyPrint
+--      CoC.Parser
+--      CoC.DeBruijn
+
+  default-language:
+    Haskell2010
+
+
+test-suite untyped-tests
+
+  main-is:
+    Main.hs
+
+  type:
+    exitcode-stdio-1.0
+
+  ghc-options:
+    -threaded -with-rtsopts=-N
+
+  hs-source-dirs:
+    test/Untyped/
+
+  build-depends:
+      Untyped
+    , base
+    , megaparsec
+        ^>= 7.0.5
+    , text
+        ^>=1.2.3
